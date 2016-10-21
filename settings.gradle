@@ -1,1 +1,1 @@
-include 'archunit', 'archunit-example', 'archunit-integration-test', 'archunit-junit'
+include 'archunit', 'archunit-example', 'archunit-integration-test', 'archunit-junit', 'archunit-visual'

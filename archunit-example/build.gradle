@@ -6,6 +6,7 @@ dependencies {
 
     testCompile project(path: ':archunit')
     testCompile project(path: ':archunit-junit')
+    testCompile project(path: ':archunit-visual')
 }
 
 addTestJarTo this
