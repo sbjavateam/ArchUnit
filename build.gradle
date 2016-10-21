@@ -38,6 +38,7 @@ ext {
             log4j_api         : 'org.apache.logging.log4j:log4j-api:2.1',
             log4j_core        : 'org.apache.logging.log4j:log4j-core:2.1',
             log4j_slf4j       : 'org.apache.logging.log4j:log4j-slf4j-impl:2.1',
+            gson              : 'com.google.code.gson:gson:2.7',
 
             junit             : 'junit:junit:4.12',
             hamcrest          : 'org.hamcrest:hamcrest-core:1.3',

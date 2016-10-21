@@ -7,6 +7,7 @@ dependencies {
     testCompile project(path: ':archunit')
     testCompile project(path: ':archunit', configuration: 'tests')
     testCompile project(path: ':archunit-junit')
+    testCompile project(path: ':archunit-visual')
     testCompile dependency.junit
     testCompile dependency.assertj
     testCompile dependency.guava
