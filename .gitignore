@@ -12,3 +12,4 @@ _site
 .jekyll-metadata
 .asciidoctor
 node_modules
+nodejs
