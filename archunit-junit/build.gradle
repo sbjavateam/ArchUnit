@@ -16,6 +16,7 @@ dependencies {
     testCompile project(path: ':archunit', configuration: 'tests')
 }
 
+// FIXME: Consolidate
 shadowJar {
     dependencies {
         exclude(project(':archunit'))
@@ -54,6 +55,7 @@ task removeDuplicateThirdParty(type: Jar, dependsOn: [shrinkDependencies, projec
     }
 }
 finishArchive.dependsOn removeDuplicateThirdParty
+// FIXME end
 
 def configureDependenciesAfterShadow = { pom ->
     pom.dependencies.removeAll {
