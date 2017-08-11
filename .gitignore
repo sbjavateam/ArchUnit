@@ -13,3 +13,4 @@ _site
 .asciidoctor
 node_modules
 nodejs
+*.log
