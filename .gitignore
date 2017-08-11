@@ -11,3 +11,4 @@ _site
 .jekyll-metadata
 node_modules
 nodejs
+*.log
