@@ -16,47 +16,6 @@ dependencies {
     testCompile project(path: ':archunit', configuration: 'tests')
 }
 
-// FIXME: Consolidate
-shadowJar {
-    dependencies {
-        exclude(project(':archunit'))
-        exclude(dependency(dependency.slf4j))
-        exclude(dependency(dependency.junit))
-        exclude(dependency(dependency.hamcrest)) // Shadow doesn't respect transitive excludes :-(
-    }
-}
-
-shrinkDependencies {
-    // NOTE: proguard will warn a lot about library classes depending on program classes due to the double
-    //       repackaged third party libs. We filter those duplicated classes in the next step.
-    dontwarn
-    dontnote
-}
-
-task removeDuplicateThirdParty(type: Jar, dependsOn: [shrinkDependencies, project(':archunit').shrinkDependencies]) {
-    doFirst {
-        List repackagedFilesInArchUnit = zipTree(project(':archunit').shrinkDependencies.archivePath).filter {
-            it.absolutePath.contains('com/tngtech/archunit/thirdparty')
-        }.collect {
-            it.absolutePath.replaceAll('.*com/tngtech/archunit/thirdparty', '**')
-        }
-
-        exclude repackagedFilesInArchUnit
-    }
-
-    File tempPath = tempJar(jar.archivePath)
-
-    from zipTree(shrinkDependencies.archivePath)
-    archiveName tempPath.name
-
-    doLast {
-        assert shrinkDependencies.archivePath.delete()
-        assert tempPath.renameTo(shrinkDependencies.archivePath)
-    }
-}
-finishArchive.dependsOn removeDuplicateThirdParty
-// FIXME end
-
 def configureDependenciesAfterShadow = { pom ->
     pom.dependencies.removeAll {
         it.scope != 'compile' || !(it.artifactId in ['archunit', 'junit'])
